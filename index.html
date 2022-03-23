@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Ejemplo</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap.min (2).css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="sintaxisBasicaJavascript.js"></script>
+</head>
+<body onload="bienvenida()">
+    <div id="container">
+        <div id="main">
+            <header><h2>Ejemplos utilizando Javascript</h2></header>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a  href="index.html">Home</a></li>
+                    <li class="nav-item"><a  href="#">Servicios</a></li>
+                    <li class="nav-item"><a  href="#">Noticias</a></li>
+                    <li class="nav-item"><a  href="#">Galería</a></li>
+                    <li class="nav-item"><a  href="#">Acerca de nosotros</a></li>
+
+                </ul>
+            </nav>
+
+
+            <main class="contenido">
+                <div class="contenido2">
+                    <aside>
+                        <form>
+                            <p>
+                                <input type="text" size="10" name="reloj" />
+                            </p>
+
+                            <script>
+                                var r = setInterval("tiempo()", 500);
+
+                            </script>
+                        </form>
+                        <p id="dia"></p>
+                        <button type="button" onclick="confirmacion()">Ir a Boostrap</button>
+                        <p class="infoBoton">Con el botón anterior podrá ir a Boostrap</p>
+                        <p id="infoDia"></p>
+                        <p id="botonInfo"></p>
+                        <p id="selectorExample"></p>
+
+                        <script>
+                            var indice = 0;
+                            frases = new Array();
+                            frases[0] = "Esto";
+                            frases[1] = "es";
+                            frases[2] = "un";
+                            frases[3] = "Texto aleatorio";
+
+                            indice = Math.random() * (frases.length);
+                            indice = Math.floor(indice);
+
+                            function rotar() {
+                                if (indice == frases.length) {
+                                    indice = 0;
+                                }
+                                document.getElementById("rotando").innerHTML = frases[indice];
+                                indice++;
+                                setTimeout("rotar();", 3000);
+                            }
+                        </script>
+
+                        <div id="rotando"></div>
+                        <script>rotar();</script>
+
+
+                        <script>
+                            var fecha = new Date();
+                            var dia = fecha.getDay();
+                            var traduccion = "";
+
+                            switch (dia) {
+                                case 0:
+                                    traduccion = "domingo";
+                                    break;
+                                case 1:
+                                    traduccion = "lunes";
+                                    break;
+                                case 2:
+                                    traduccion = "martes";
+                                    break;
+                                case 3:
+                                    traduccion = "miércoles";
+                                    break;
+                                case 4:
+                                    traduccion = "jueves";
+                                    break;
+                                case 5:
+                                    traduccion = "viernes";
+                                    break;
+                                case 6:
+                                    traduccion = "sábado";
+                                    break;
+                                default:
+                                    traduccion = "error";
+                            }
+
+                            const element = document.getElementsByTagName("p");
+                            document.getElementById("dia").innerHTML = 'Hoy es ' + traduccion;
+                            document.getElementById("infoDia").innerHTML = 'El texto:' + ' " ' + element[1].innerHTML + ' " ' + ' se pudo obtener a través de la fecha y un switch';
+
+                            const elements = document.getElementsByClassName("infoBoton");
+                            document.getElementById("botonInfo").innerHTML = 'El texto:' + ' " ' + elements[0].innerHTML + ' " ' + ' se a colocado en este párrafo mediante su clase';
+
+                            const elements2 = document.querySelectorAll("p.infoBoton");
+                            document.getElementById("selectorExample").innerHTML = 'El texto:' + ' " ' + elements2[0].innerHTML + ' " ' + ' se a colocado en este párrafo mediante su selector';
+
+                        </script>
+
+
+                        <h4>Lista de materiales:</h4>
+                        <script>
+                            materiales();
+                        </script>
+
+                        <br />
+
+                        <p>El siguiente botón (contar) hace un conteo hasta llegar al número ingresado por el usuario </p>
+                        <input type="text" id="texto" />
+                        <button onclick="contar()">Contar</button>
+                        <button onclick="borrar()">Borrar</button>
+
+                        <p id="conteo"></p>
+
+
+                        <script>
+                            function contar() {
+                                var valor = document.getElementById("texto").value;
+                                var x = "", i = 1;
+                                var digito = Number.parseInt(valor);
+                                if (Number.isNaN(digito)) {
+                                    alert("El dato ingresado no es un número");
+                                    return;
+                                }
+
+                                while (i <= valor) {
+                                    x = x + "Número " + i + "<br>";
+                                    i++;
+                                }
+                                document.getElementById("conteo").innerHTML = x;
+
+
+                            }
+                        </script>
+
+                        <br />
+
+                        <p>Este botón permite que digite nombres de colores o cualquier texto hasta mencionar el color rojo</p>
+                        <button onclick="aceptarColores()">Colores</button><br /><br /><br />
+                        <p>Ingresa el mensaje que quieras</p>
+                        <input type="text" id="texto2" />
+                        <button onclick="contarCaracteres()">Contar letras</button>
+                        <button onclick="borrar()">Borrar</button>
+                        <p id="contandoLetras"></p>
+
+                        <script>
+                            function contarCaracteres() {
+                                var cadena = document.getElementById("texto2").value;;
+                                var resultado = cadena.length;
+                                document.getElementById("contandoLetras").innerHTML = 'El texto ingresado contiene: ' + resultado + ' caracteres (incluyendo números y espacios)';
+                            }
+
+                        </script>
+
+                    </aside>
+
+                    <article>
+                        <p>Ingresa un número entre 5 y 10:</p>
+
+                        <input id="ingresarNum" type="text">
+                        <button type="button" onclick="IngresarNumero()">Aceptar</button>
+                        <p id="ingreNum"></p>
+
+                        <script>
+                            function IngresarNumero() {
+                                const message = document.getElementById("ingreNum");
+                                message.innerHTML = "";
+                                let x = document.getElementById("ingresarNum").value;
+                                try {
+                                    if (x == "") throw "está vacia";
+                                    if (isNaN(x)) throw "no es un número";
+                                    x = Number(x);
+                                    if (x < 5) throw " es inferior a 5";
+                                    if (x > 10) throw "es superior a 10";
+                                    if (x >= 5 && x <= 10) throw "es correcta";
+                                }
+                                catch (err) {
+                                    message.innerHTML = "La entrada " + err;
+                                }
+                            }
+                        </script>
+
+                        <p id="literal"></p>
+                        <script>
+                            var divisa = 'materiales';
+                            document.getElementById("literal").innerHTML=`Puede adquirir los ${divisa} mencionados anteriormente en la papelería.`;
+                        </script>
+                    </article>
+                </div>
+               
+
+               
+
+
+               
+            </main>
+            <footer><p>Derechos reservados ©</p></footer>
+        </div>
+    </div>
+    
+</body>
+</html>
